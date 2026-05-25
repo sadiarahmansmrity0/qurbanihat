@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Deshi Shahi Cow",
+    "type": "Cow",
+    "breed": "Local Deshi",
+    "price": 120000,
+    "weight": 280,
+    "age": 3,
+    "location": "Bogura",
+    "description": "Healthy deshi cow suitable for Qurbani. Well fed with natural খাবার.",
+    "image": "https://images.unsplash.com/photo-1708965799324-41fb097e3f4d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Large Animal"
+  },
+  {
+    "id": 2,
+    "name": "Royal Brahman Bull",
+    "type": "Cow",
+    "breed": "Brahman",
+    "price": 185000,
+    "weight": 420,
+    "age": 4,
+    "location": "Kushtia",
+    "description": "Strong Brahman bull with excellent body shape and healthy diet.",
+    "image": "https://images.unsplash.com/photo-1551606712-b0341396cc87?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Large Animal"
+  },
+  {
+    "id": 3,
+    "name": "Premium Black Goat",
+    "type": "Goat",
+    "breed": "Black Bengal",
+    "price": 28000,
+    "weight": 32,
+    "age": 2,
+    "location": "Rajshahi",
+    "description": "Beautiful Black Bengal goat, active and perfect for Qurbani.",
+    "image": "https://images.unsplash.com/photo-1607372322888-cf5d31ba525d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Small Animal"
+  },
+  {
+    "id": 4,
+    "name": "White Jamnapari Goat",
+    "type": "Goat",
+    "breed": "Jamnapari",
+    "price": 42000,
+    "weight": 45,
+    "age": 2,
+    "location": "Sylhet",
+    "description": "Tall and healthy Jamnapari goat with premium appearance.",
+    "image": "https://images.unsplash.com/photo-1623696422481-69d445e61202?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Small Animal"
+  },
+  {
+    "id": 5,
+    "name": "Red Chittagong Cow",
+    "type": "Cow",
+    "breed": "Red Chittagong",
+    "price": 95000,
+    "weight": 240,
+    "age": 3,
+    "location": "Chattogram",
+    "description": "Traditional Red Chittagong cow, naturally raised and healthy.",
+    "image": "https://plus.unsplash.com/premium_photo-1668446124029-9a55e3455b69?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Large Animal"
+  },
+  {
+    "id": 6,
+    "name": "Premium Merino Sheep",
+    "type": "Sheep",
+    "breed": "Merino",
+    "price": 45000,
+    "weight": 55,
+    "age": 2,
+    "location": "Dhaka",
+    "description": "Large, healthy Merino sheep with thick wool and excellent meat quality.",
+    "image": "https://images.unsplash.com/photo-1588942173353-0c53a1bf9081?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Ds",
+    "category": "Small Animal"
+  }
+]
