@@ -9,7 +9,7 @@ import logo from '../../src/assets/logo.svg';
 
 export default function Register() {
   const router = useRouter();
-  const { signup, updateUserProfile, sendVerification, logout, signInWithGoogle } = useAuth();
+  const { signup, updateUserProfile, signInWithGoogle } = useAuth();
   const [formData, setFormData] = useState({
     displayName: '',
     email: '',
@@ -18,7 +18,6 @@ export default function Register() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +32,7 @@ export default function Register() {
     setError('');
     try {
       await signInWithGoogle();
-      toast.success('Successfully registered and logged in with Google!');
+      toast.success('✨ Successfully registered with Google! ✨');
       router.push('/');
     } catch (err) {
       setError(err.message);
@@ -63,19 +62,16 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await signup(formData.email, formData.password);
+      // Create user account
+      const userCredential = await signup(formData.email, formData.password);
+      
+      // Update profile with display name
       if (formData.displayName) {
         await updateUserProfile(formData.displayName, '');
       }
       
-      // Send verification email
-      await sendVerification();
-      
-      // Force logout to prevent auto-login
-      await logout();
-      
-      setIsSuccess(true);
-      toast.success('Registration successful! Please verify your email.');
+      toast.success('✨ Account created successfully! ✨');
+      router.push('/');
     } catch (err) {
       setError(err.message);
       toast.error(err.message);
@@ -84,47 +80,21 @@ export default function Register() {
     }
   };
 
-  if (isSuccess) {
-    return (
-      <main className="bg-cream min-h-screen flex items-center justify-center py-12">
-        <div className="w-full max-w-md px-4">
-          <div className="bg-white rounded-xl shadow-soft-md p-8 text-center">
-            <div className="text-6xl text-primary mb-6">
-              <i className="fas fa-envelope-open-text"></i>
-            </div>
-            <h1 className="text-3xl font-bold text-charcoal mb-4">Check Your Email</h1>
-            <p className="text-gray-600 mb-8">
-              We've sent a verification link to <span className="font-bold text-charcoal">{formData.email}</span>. 
-              Please verify your email to activate your account.
-            </p>
-            <div className="bg-primary/5 p-4 rounded-lg mb-8 text-sm text-primary font-medium">
-              Check your email & verify, then log in
-            </div>
-            <Link href="/login" className="w-full btn-primary py-3 font-semibold text-lg block">
-              <i className="fas fa-sign-in-alt mr-2"></i>
-              Go to Login
-            </Link>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
   return (
-    <main className="bg-cream min-h-screen flex items-center justify-center py-12">
+    <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen flex items-center justify-center py-12">
       <div className="w-full max-w-md px-4">
-        <div className="bg-white rounded-xl shadow-soft-md p-8">
+        <div className="bg-white rounded-3xl shadow-glow p-8 border border-pink-100">
           {/* Logo */}
           <div className="text-center mb-8">
             <Link href="/" className="inline-block">
-              <img src={logo.src || logo} alt="QurbaniHat Logo" className="h-16 w-auto mx-auto mb-2" />
+              <img src={logo.src || logo} alt="QurbaniHat Logo" className="h-16 w-auto mx-auto mb-3" />
             </Link>
-            <p className="text-gray-600 mt-2">Create your account</p>
+            <p className="text-stone-400 mt-2 font-light">Join our family! ✨</p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+            <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-100 text-red-600 px-4 py-3 rounded-2xl mb-6 text-sm">
               <i className="fas fa-exclamation-circle mr-2"></i>
               {error}
             </div>
@@ -133,7 +103,8 @@ export default function Register() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <i className="fas fa-user text-rose-400 text-[10px]"></i>
                 Full Name
               </label>
               <input
@@ -141,13 +112,14 @@ export default function Register() {
                 name="displayName"
                 value={formData.displayName}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
                 placeholder="Your full name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <i className="fas fa-envelope text-rose-400 text-[10px]"></i>
                 Email Address
               </label>
               <input
@@ -156,13 +128,14 @@ export default function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <i className="fas fa-lock text-rose-400 text-[10px]"></i>
                 Password
               </label>
               <input
@@ -171,14 +144,15 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
                 placeholder="••••••••"
               />
-              <p className="text-xs text-gray-500 mt-1">At least 6 characters</p>
+              <p className="text-xs text-stone-400 mt-1">At least 6 characters</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <i className="fas fa-check-circle text-rose-400 text-[10px]"></i>
                 Confirm Password
               </label>
               <input
@@ -187,7 +161,7 @@ export default function Register() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
                 placeholder="••••••••"
               />
             </div>
@@ -204,7 +178,7 @@ export default function Register() {
                 </>
               ) : (
                 <>
-                  <i className="fas fa-user-plus mr-2"></i>
+                  <i className="fas fa-heart mr-2"></i>
                   Create Account
                 </>
               )}
@@ -213,9 +187,9 @@ export default function Register() {
 
           {/* Divider */}
           <div className="my-6 flex items-center gap-4">
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <span className="text-gray-500 text-sm">or</span>
-            <div className="flex-1 h-px bg-gray-300"></div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-200 to-transparent"></div>
+            <span className="text-stone-400 text-sm">or</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-200 to-transparent"></div>
           </div>
 
           {/* Social Signup */}
@@ -223,16 +197,16 @@ export default function Register() {
             type="button"
             onClick={handleGoogleSignup}
             disabled={loading}
-            className="w-full border-2 border-gray-300 py-3 rounded-lg font-semibold text-gray-700 hover:border-primary hover:text-primary transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full border-2 border-pink-200 py-3 rounded-xl font-semibold text-stone-600 hover:border-rose-300 hover:text-rose-500 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <i className="fab fa-google mr-2"></i>
             Sign up with Google
           </button>
 
           {/* Login Link */}
-          <p className="text-center text-gray-600 mt-8">
+          <p className="text-center text-stone-500 mt-8 text-sm">
             Already have an account?{' '}
-            <Link href="/login" className="text-primary font-semibold hover:underline">
+            <Link href="/login" className="text-rose-500 font-semibold hover:text-rose-600 transition-colors">
               Login here
             </Link>
           </p>
@@ -240,8 +214,8 @@ export default function Register() {
 
         {/* Back Home Link */}
         <div className="text-center mt-6">
-          <Link href="/" className="text-gray-600 hover:text-primary transition inline-flex items-center gap-2">
-            <i className="fas fa-arrow-left"></i>
+          <Link href="/" className="text-stone-400 hover:text-rose-500 transition-colors inline-flex items-center gap-2 text-sm group">
+            <i className="fas fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform duration-300"></i>
             Back to Home
           </Link>
         </div>

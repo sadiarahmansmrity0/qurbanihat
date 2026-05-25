@@ -81,30 +81,31 @@ export default function Home() {
     }
   ];
 
+  // Updated Testimonials with vintage names and mixed elderly reviewers (3 only)
   const testimonials = [
     {
       id: 1,
-      name: 'Razin Chowdhury',
-      location: 'Sylhet',
+      name: 'Abdul Karim Miah',
+      location: 'Old Dhaka',
       rating: 5,
-      text: 'Excellent website! Found a healthy cow easily. The animal was exactly as described. Highly recommended for anyone looking for Qurbani animals.',
-      avatar: 'https://scontent.fjsr15-1.fna.fbcdn.net/v/t39.30808-6/471600286_1150804533274617_7215337919184135312_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGuwsW0RV0dZklcJb6N5jAuVtsWPpsc8b9W2xY-mxzxv-ln5UXY7CaWShTWrR-cy4WXeUOQvN7bNPPqJUooyzIL&_nc_ohc=_rKcLiiqFaEQ7kNvwEd47DK&_nc_oc=AdqJNLUxqcZUSRX_CMRIwZ6A45au1u3uYMQ6Lvdnk56tYbNxQ-zIL8OFNTbbpgLIixc&_nc_zt=23&_nc_ht=scontent.fjsr15-1.fna&_nc_gid=YzxVifEnBWPT3CJkU6IL5g&_nc_ss=7b2a8&oh=00_Af49qK_mv4OPD8-y7z7JQtdt2r6lIH0DJ_ZcLELIJxjYUQ&oe=69F988BC'
+      text: 'I have been doing Qurbani for 40 years. This is the first time I found such healthy animals online. The cow was exactly as shown. May Allah bless their efforts.',
+      avatar: 'https://randomuser.me/api/portraits/men/75.jpg'
     },
     {
       id: 2,
-      name: 'Sinikdho Mahmud',
-      location: 'Kurigram',
+      name: 'Rahima Begum',
+      location: 'Chittagong',
       rating: 5,
-      text: 'Very satisfied with QurbaniHat! Transparent pricing and helpful customer service. Delivery was on time and the animal was in perfect condition.',
-      avatar: 'https://instagram.fjsr15-1.fna.fbcdn.net/v/t51.75761-15/480857022_17901559086131406_3828935458209911941_n.webp?_nc_cat=101&ig_cache_key=MzU3NDI2OTU3NDkxNDA5NTYwOQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=7oAElJ2Oc-8Q7kNvwEm8pMU&_nc_oc=AdpEXPl-tZ-FXGX95touYct40XnjkjpMunn5wL_tI-JY0uxl3xXUwVukE2zTFlcwfG8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fjsr15-1.fna&_nc_gid=8qa7zlgBom3G5Ax6YBI_hg&_nc_ss=7a22e&oh=00_Af2aHVgEHLJeVmN_DM_Goju_KX1-5u7AWAa161cOb-6mLA&oe=69F99DB8'
+      text: 'Very satisfied with their service! My husband is old and cannot go to the market anymore. QurbaniHat delivered a healthy goat to our doorstep. Thank you!',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg'
     },
     {
       id: 3,
-      name: 'Karim Hassan',
-      location: 'Sylhet',
+      name: 'Mohammad Ali Sarder',
+      location: 'Rajshahi',
       rating: 5,
-      text: 'Best platform for Qurbani animal booking! Great selection of healthy animals. The team was very professional and supportive throughout.',
-      avatar: 'https://media.licdn.com/dms/image/v2/C5103AQE65D3GPlLfGA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1568656721509?e=2147483647&v=beta&t=-QfWqDnFWF5aSmrjpIhfvq-pC3mL4irQyql0Dal8sGQ'
+      text: 'As a retired government officer, I value honesty. Their pricing is transparent and animals are verified. Will definitely book again next year.',
+      avatar: 'https://randomuser.me/api/portraits/men/82.jpg'
     }
   ];
 
@@ -278,36 +279,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================ TESTIMONIALS SECTION ================ */}
-      <section className="bg-cream/50 py-20 md:py-32">
+      {/* ================ TESTIMONIALS SECTION - VINTAGE STYLE ================ */}
+      <section className="bg-gradient-to-br from-amber-50/30 via-pink-50/20 to-rose-50/30 py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-4">
           <SectionTitle
-            title="What Our Customers Say"
-            subtitle="Real experiences from satisfied customers"
+            title="What Our Elders Say"
+            subtitle="Trusted by generations for over 40 years"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map(testimonial => (
-              <div key={testimonial.id} className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-gray-200/50 border border-white hover:shadow-2xl transition-shadow duration-300">
-                <div className="flex items-center gap-4 mb-6">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-primary/10 object-cover"
-                  />
-                  <div>
-                    <h4 className="font-bold text-charcoal text-lg">{testimonial.name}</h4>
-                    <p className="text-xs md:text-sm text-gray-400 font-medium uppercase tracking-wider">{testimonial.location}</p>
+              <div key={testimonial.id} className="bg-white/80 backdrop-blur-sm p-8 md:p-10 rounded-3xl shadow-xl border border-amber-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white group">
+                {/* Vintage Quote Icon */}
+                <div className="mb-6">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
+                    <i className="fas fa-quote-left text-amber-600 text-xl"></i>
                   </div>
                 </div>
 
+                {/* Customer Avatar & Name */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="w-16 h-16 rounded-full border-2 border-amber-300 object-cover shadow-md"
+                    />
+                    {/* Vintage badge */}
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-amber-500 flex items-center justify-center">
+                      <i className="fas fa-star text-white text-[8px]"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-amber-800 text-lg">{testimonial.name}</h4>
+                    <div className="flex items-center gap-1 mt-1">
+                      <i className="fas fa-map-marker-alt text-amber-500 text-[10px]"></i>
+                      <p className="text-xs text-stone-400 font-medium">{testimonial.location}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rating Stars */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <i key={i} className="fas fa-star text-accent text-sm"></i>
+                    <i key={i} className="fas fa-star text-amber-400 text-sm"></i>
                   ))}
                 </div>
 
-                <p className="text-gray-600 leading-relaxed italic font-light text-base md:text-lg">"{testimonial.text}"</p>
+                {/* Testimonial Text */}
+                <p className="text-stone-600 leading-relaxed italic font-light text-base md:text-lg">"{testimonial.text}"</p>
+
+                {/* Vintage Signature Line */}
+                <div className="mt-6 pt-4 border-t border-amber-100">
+                  <p className="text-[10px] text-amber-400 font-semibold uppercase tracking-wider flex items-center gap-2">
+                    <i className="fas fa-feather-alt"></i>
+                    Verified Customer
+                  </p>
+                </div>
               </div>
             ))}
           </div>

@@ -31,7 +31,7 @@ export default function Login() {
     setError('');
     try {
       await signInWithGoogle();
-      toast.success('Successfully logged in with Google!');
+      toast.success('✨ Successfully logged in with Google! ✨');
       router.push('/');
     } catch (err) {
       setError(err.message);
@@ -57,7 +57,7 @@ export default function Login() {
         return;
       }
 
-      toast.success('Successfully logged in!');
+      toast.success('✨ Successfully logged in! ✨');
       router.push('/');
     } catch (err) {
       setError(err.message);
@@ -69,18 +69,19 @@ export default function Login() {
 
   if (notVerified) {
     return (
-      <main className="bg-cream min-h-screen flex items-center justify-center py-12">
+      <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen flex items-center justify-center py-12">
         <div className="w-full max-w-md px-4">
-          <div className="bg-white rounded-xl shadow-soft-md p-8 text-center">
-            <div className="text-6xl text-red-500 mb-6">
-              <i className="fas fa-user-shield"></i>
+          <div className="bg-white rounded-3xl shadow-glow p-8 text-center border border-pink-100">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-100 to-rose-100 flex items-center justify-center mx-auto mb-6">
+              <i className="fas fa-envelope text-rose-400 text-3xl"></i>
             </div>
-            <h1 className="text-3xl font-bold text-charcoal mb-4">Verification Required</h1>
-            <p className="text-gray-600 mb-8">
-              Your email <span className="font-bold text-charcoal">{formData.email}</span> is not verified yet. 
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-stone-800 to-rose-600 bg-clip-text text-transparent mb-4">Verification Required</h1>
+            <p className="text-stone-500 mb-8">
+              Your email <span className="font-bold text-rose-500">{formData.email}</span> is not verified yet. 
               Please check your inbox and follow the link to verify your account.
             </p>
-            <div className="bg-red-50 p-4 rounded-lg mb-8 text-sm text-red-600 font-medium">
+            <div className="bg-gradient-to-r from-pink-50 to-rose-50 p-4 rounded-2xl mb-8 text-sm text-rose-600 font-medium border border-pink-100">
+              <i className="fas fa-envelope-open-text mr-2"></i>
               Check your email & verify, then log in
             </div>
             <button 
@@ -90,7 +91,7 @@ export default function Login() {
               <i className="fas fa-redo mr-2"></i>
               Try Logging In Again
             </button>
-            <p className="mt-6 text-gray-500 text-sm">
+            <p className="mt-6 text-stone-400 text-sm">
               Didn't receive the email? Check your spam folder.
             </p>
           </div>
@@ -100,20 +101,20 @@ export default function Login() {
   }
 
   return (
-    <main className="bg-cream min-h-screen flex items-center justify-center py-12">
+    <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen flex items-center justify-center py-12">
       <div className="w-full max-w-md px-4">
-        <div className="bg-white rounded-xl shadow-soft-md p-8">
+        <div className="bg-white rounded-3xl shadow-glow p-8 border border-pink-100">
           {/* Logo */}
           <div className="text-center mb-8">
             <Link href="/" className="inline-block">
-              <img src={logo.src || logo} alt="QurbaniHat Logo" className="h-16 w-auto mx-auto mb-2" />
+              <img src={logo.src || logo} alt="QurbaniHat Logo" className="h-16 w-auto mx-auto mb-3" />
             </Link>
-            <p className="text-gray-600 mt-2">Login to your account</p>
+            <p className="text-stone-400 mt-2 font-light">Welcome back! ✨</p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+            <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-100 text-red-600 px-4 py-3 rounded-2xl mb-6 text-sm">
               <i className="fas fa-exclamation-circle mr-2"></i>
               {error}
             </div>
@@ -122,7 +123,8 @@ export default function Login() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <i className="fas fa-envelope text-rose-400 text-[10px]"></i>
                 Email Address
               </label>
               <input
@@ -131,13 +133,14 @@ export default function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <i className="fas fa-lock text-rose-400 text-[10px]"></i>
                 Password
               </label>
               <input
@@ -146,7 +149,7 @@ export default function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
                 placeholder="••••••••"
               />
             </div>
@@ -163,7 +166,7 @@ export default function Login() {
                 </>
               ) : (
                 <>
-                  <i className="fas fa-sign-in-alt mr-2"></i>
+                  <i className="fas fa-heart mr-2"></i>
                   Login
                 </>
               )}
@@ -172,9 +175,9 @@ export default function Login() {
 
           {/* Divider */}
           <div className="my-6 flex items-center gap-4">
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <span className="text-gray-500 text-sm">or</span>
-            <div className="flex-1 h-px bg-gray-300"></div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-200 to-transparent"></div>
+            <span className="text-stone-400 text-sm">or</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-200 to-transparent"></div>
           </div>
 
           {/* Social Login */}
@@ -182,16 +185,16 @@ export default function Login() {
             type="button"
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full border-2 border-gray-300 py-3 rounded-lg font-semibold text-gray-700 hover:border-primary hover:text-primary transition mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full border-2 border-pink-200 py-3 rounded-xl font-semibold text-stone-600 hover:border-rose-300 hover:text-rose-500 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <i className="fab fa-google mr-2"></i>
             Login with Google
           </button>
 
           {/* Register Link */}
-          <p className="text-center text-gray-600 mt-8">
+          <p className="text-center text-stone-500 mt-8 text-sm">
             Don't have an account?{' '}
-            <Link href="/register" className="text-primary font-semibold hover:underline">
+            <Link href="/register" className="text-rose-500 font-semibold hover:text-rose-600 transition-colors">
               Register here
             </Link>
           </p>
@@ -199,8 +202,8 @@ export default function Login() {
 
         {/* Back Home Link */}
         <div className="text-center mt-6">
-          <Link href="/" className="text-gray-600 hover:text-primary transition inline-flex items-center gap-2">
-            <i className="fas fa-arrow-left"></i>
+          <Link href="/" className="text-stone-400 hover:text-rose-500 transition-colors inline-flex items-center gap-2 text-sm group">
+            <i className="fas fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform duration-300"></i>
             Back to Home
           </Link>
         </div>
