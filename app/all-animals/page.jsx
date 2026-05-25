@@ -37,14 +37,14 @@ export default function AllAnimals() {
   const animalTypes = ['All', ...new Set(animals.map(a => a.type))];
 
   return (
-    <main className="bg-white min-h-screen">
+    <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen">
       {/* Header Section */}
-      <section className="bg-gradient-to-br from-cream via-white to-primary/5 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-white via-pink-50/50 to-rose-50/30 py-16 md:py-24 border-b border-pink-100">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-6">
-            Find Your <span className="text-primary">Qurbani</span> Animal
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Find Your <span className="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">Qurbani</span> Animal
           </h1>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg font-light">
+          <p className="text-stone-400 max-w-2xl mx-auto text-lg font-light">
             Browse our wide selection of healthy, verified livestock. Use the filters below to find the perfect animal for your Qurbani.
           </p>
         </div>
@@ -52,18 +52,22 @@ export default function AllAnimals() {
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Filter and Sort */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 border-b border-gray-100 pb-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 border-b border-pink-100 pb-8">
           <div className="flex flex-col gap-2">
-            <div className="text-charcoal font-bold text-lg">
+            <div className="text-stone-700 font-bold text-lg flex items-center gap-2">
+              <i className="fas fa-paw text-rose-400 text-sm"></i>
               Showing {filteredAnimals.length} Animals
             </div>
             <div className="flex items-center gap-2">
-              <label htmlFor="sort" className="text-gray-500 text-sm font-medium">Sort by:</label>
+              <label htmlFor="sort" className="text-stone-400 text-sm font-medium flex items-center gap-1">
+                <i className="fas fa-arrow-up-wide-short text-[10px]"></i>
+                Sort by:
+              </label>
               <select 
                 id="sort"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-cream text-charcoal px-3 py-1.5 rounded-lg font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                className="bg-white text-stone-600 px-4 py-1.5 rounded-xl font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-rose-300/50 border border-pink-100 cursor-pointer hover:border-rose-200 transition-all"
               >
                 <option value="default">Default</option>
                 <option value="low-to-high">Price: Low to High</option>
@@ -77,10 +81,10 @@ export default function AllAnimals() {
               <button
                 key={type}
                 onClick={() => setFilterType(type)}
-                className={`px-8 py-2.5 rounded-xl font-bold transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 ${
                   filterType === type
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20'
-                    : 'bg-cream text-gray-500 hover:bg-primary/5'
+                    ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md shadow-rose-200/50'
+                    : 'bg-white text-stone-500 hover:text-rose-500 border border-pink-100 hover:border-rose-200 hover:shadow-sm'
                 }`}
               >
                 {type}
@@ -100,15 +104,19 @@ export default function AllAnimals() {
               ))}
         </div>
 
+        {/* Empty State */}
         {filteredAnimals.length === 0 && (
-          <div className="text-center py-24 bg-cream/30 rounded-[3rem] mt-12 border-2 border-dashed border-gray-200">
-            <i className="fas fa-search text-gray-300 text-5xl mb-4"></i>
-            <p className="text-gray-500 text-xl font-light">No animals found in this category.</p>
+          <div className="text-center py-16 bg-white/50 rounded-3xl mt-12 border-2 border-dashed border-pink-200 backdrop-blur-sm">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-100 to-rose-100 flex items-center justify-center mx-auto mb-4">
+              <i className="fas fa-heart text-rose-400 text-2xl"></i>
+            </div>
+            <p className="text-stone-400 text-xl font-light">No animals found in this category.</p>
             <button 
               onClick={() => setFilterType('All')}
-              className="mt-4 text-primary font-bold hover:underline"
+              className="mt-4 text-rose-500 font-semibold hover:text-rose-600 transition-colors duration-300 inline-flex items-center gap-2 group"
             >
-              Clear all filters
+              <span>Clear all filters</span>
+              <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
             </button>
           </div>
         )}
