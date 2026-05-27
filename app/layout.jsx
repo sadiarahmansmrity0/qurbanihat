@@ -3,6 +3,7 @@ import Navbar from '../src/components/Navbar';
 import Footer from '../src/components/Footer';
 import AuthProvider from '../src/context/AuthContext';
 import './globals.css';
+import 'animate.css';
 
 export const metadata = {
   title: 'Qurbani Hat',

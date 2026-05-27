@@ -136,7 +136,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-          <Link href="/all-animals" className="group px-8 py-4 bg-gradient-to-r from-rose-500 to-amber-500 text-white rounded-xl hover:from-rose-600 hover:to-amber-600 transition-all duration-300 hover:shadow-lg hover:shadow-rose-200/50 hover:scale-105 flex items-center gap-3 font-semibold shadow-md">
+          <Link href="/all-animals" className="group px-8 py-4 bg-gradient-to-r from-rose-500 to-amber-500 text-white rounded-xl hover:from-rose-600 hover:to-amber-600 transition-all duration-300 hover:shadow-lg hover:shadow-rose-200/50 hover:scale-105 flex items-center gap-3 font-semibold shadow-md btn-primary animate__animated animate__pulse animate__infinite">
             Browse Animals
             <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
           </Link>
