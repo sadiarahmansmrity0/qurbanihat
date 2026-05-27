@@ -52,7 +52,6 @@ QurbaniHat is a modern web application that connects users with verified farms f
 - **Package Manager:** npm
 - **Version Control:** Git
 
-
 ## 🚀 Getting Started
 
 ### Prerequisites
