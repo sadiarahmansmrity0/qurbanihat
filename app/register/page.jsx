@@ -9,7 +9,7 @@ import logo from '../../src/assets/logo.svg';
 
 export default function Register() {
   const router = useRouter();
-  const { signup, updateUserProfile, signInWithGoogle } = useAuth();
+  const { signup, updateUserProfile, signInWithGoogle } = useAuth(); // Removed sendVerification, logout
   const [formData, setFormData] = useState({
     displayName: '',
     email: '',
@@ -32,7 +32,7 @@ export default function Register() {
     setError('');
     try {
       await signInWithGoogle();
-      toast.success('✨ Successfully registered with Google! ✨');
+      toast.success('Successfully registered and logged in with Google!');
       router.push('/');
     } catch (err) {
       setError(err.message);
@@ -62,16 +62,15 @@ export default function Register() {
     setLoading(true);
 
     try {
-      // Create user account
-      const userCredential = await signup(formData.email, formData.password);
-      
-      // Update profile with display name
+      const user = await signup(formData.email, formData.password);
       if (formData.displayName) {
         await updateUserProfile(formData.displayName, '');
       }
       
-      toast.success('✨ Account created successfully! ✨');
-      router.push('/');
+      // No email verification required - direct success
+      toast.success('Registration successful! You can now log in.');
+      router.push('/login');
+      
     } catch (err) {
       setError(err.message);
       toast.error(err.message);
@@ -81,20 +80,20 @@ export default function Register() {
   };
 
   return (
-    <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen flex items-center justify-center py-12">
+    <main className="bg-cream min-h-screen flex items-center justify-center py-12">
       <div className="w-full max-w-md px-4">
-        <div className="bg-white rounded-3xl shadow-glow p-8 border border-pink-100">
+        <div className="bg-white rounded-xl shadow-soft-md p-8">
           {/* Logo */}
           <div className="text-center mb-8">
             <Link href="/" className="inline-block">
-              <img src={logo.src || logo} alt="QurbaniHat Logo" className="h-16 w-auto mx-auto mb-3" />
+              <img src={logo.src || logo} alt="QurbaniHat Logo" className="h-16 w-auto mx-auto mb-2" />
             </Link>
-            <p className="text-stone-400 mt-2 font-light">Join our family! ✨</p>
+            <p className="text-gray-600 mt-2">Create your account</p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-100 text-red-600 px-4 py-3 rounded-2xl mb-6 text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
               <i className="fas fa-exclamation-circle mr-2"></i>
               {error}
             </div>
@@ -103,8 +102,7 @@ export default function Register() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <i className="fas fa-user text-rose-400 text-[10px]"></i>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Full Name
               </label>
               <input
@@ -112,14 +110,13 @@ export default function Register() {
                 name="displayName"
                 value={formData.displayName}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
                 placeholder="Your full name"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <i className="fas fa-envelope text-rose-400 text-[10px]"></i>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Email Address
               </label>
               <input
@@ -128,14 +125,13 @@ export default function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <i className="fas fa-lock text-rose-400 text-[10px]"></i>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Password
               </label>
               <input
@@ -144,15 +140,14 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
                 placeholder="••••••••"
               />
-              <p className="text-xs text-stone-400 mt-1">At least 6 characters</p>
+              <p className="text-xs text-gray-500 mt-1">At least 6 characters</p>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <i className="fas fa-check-circle text-rose-400 text-[10px]"></i>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Confirm Password
               </label>
               <input
@@ -161,7 +156,7 @@ export default function Register() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-pink-50/30 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-rose-300/50 focus:border-rose-300 transition-all duration-300 text-stone-700 placeholder:text-stone-300"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
                 placeholder="••••••••"
               />
             </div>
@@ -178,7 +173,7 @@ export default function Register() {
                 </>
               ) : (
                 <>
-                  <i className="fas fa-heart mr-2"></i>
+                  <i className="fas fa-user-plus mr-2"></i>
                   Create Account
                 </>
               )}
@@ -187,9 +182,9 @@ export default function Register() {
 
           {/* Divider */}
           <div className="my-6 flex items-center gap-4">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-200 to-transparent"></div>
-            <span className="text-stone-400 text-sm">or</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-pink-200 to-transparent"></div>
+            <div className="flex-1 h-px bg-gray-300"></div>
+            <span className="text-gray-500 text-sm">or</span>
+            <div className="flex-1 h-px bg-gray-300"></div>
           </div>
 
           {/* Social Signup */}
@@ -197,16 +192,16 @@ export default function Register() {
             type="button"
             onClick={handleGoogleSignup}
             disabled={loading}
-            className="w-full border-2 border-pink-200 py-3 rounded-xl font-semibold text-stone-600 hover:border-rose-300 hover:text-rose-500 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full border-2 border-gray-300 py-3 rounded-lg font-semibold text-gray-700 hover:border-primary hover:text-primary transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <i className="fab fa-google mr-2"></i>
             Sign up with Google
           </button>
 
           {/* Login Link */}
-          <p className="text-center text-stone-500 mt-8 text-sm">
+          <p className="text-center text-gray-600 mt-8">
             Already have an account?{' '}
-            <Link href="/login" className="text-rose-500 font-semibold hover:text-rose-600 transition-colors">
+            <Link href="/login" className="text-primary font-semibold hover:underline">
               Login here
             </Link>
           </p>
@@ -214,8 +209,8 @@ export default function Register() {
 
         {/* Back Home Link */}
         <div className="text-center mt-6">
-          <Link href="/" className="text-stone-400 hover:text-rose-500 transition-colors inline-flex items-center gap-2 text-sm group">
-            <i className="fas fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform duration-300"></i>
+          <Link href="/" className="text-gray-600 hover:text-primary transition inline-flex items-center gap-2">
+            <i className="fas fa-arrow-left"></i>
             Back to Home
           </Link>
         </div>
