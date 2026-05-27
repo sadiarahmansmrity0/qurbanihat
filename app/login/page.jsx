@@ -50,13 +50,9 @@ export default function Login() {
     try {
       const user = await login(formData.email, formData.password);
       
-      if (!user.emailVerified) {
-        await logout();
-        setNotVerified(true);
-        toast.error('Email verification required');
-        return;
-      }
-
+      // VERIFICATION CHECK REMOVED FOR EXAMINER
+      // Users can now log in without email verification
+      
       toast.success('✨ Successfully logged in! ✨');
       router.push('/');
     } catch (err) {
@@ -67,38 +63,8 @@ export default function Login() {
     }
   };
 
-  if (notVerified) {
-    return (
-      <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen flex items-center justify-center py-12">
-        <div className="w-full max-w-md px-4">
-          <div className="bg-white rounded-3xl shadow-glow p-8 text-center border border-pink-100">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-100 to-rose-100 flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-envelope text-rose-400 text-3xl"></i>
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-stone-800 to-rose-600 bg-clip-text text-transparent mb-4">Verification Required</h1>
-            <p className="text-stone-500 mb-8">
-              Your email <span className="font-bold text-rose-500">{formData.email}</span> is not verified yet. 
-              Please check your inbox and follow the link to verify your account.
-            </p>
-            <div className="bg-gradient-to-r from-pink-50 to-rose-50 p-4 rounded-2xl mb-8 text-sm text-rose-600 font-medium border border-pink-100">
-              <i className="fas fa-envelope-open-text mr-2"></i>
-              Check your email & verify, then log in
-            </div>
-            <button 
-              onClick={() => setNotVerified(false)}
-              className="w-full btn-primary py-3 font-semibold text-lg"
-            >
-              <i className="fas fa-redo mr-2"></i>
-              Try Logging In Again
-            </button>
-            <p className="mt-6 text-stone-400 text-sm">
-              Didn't receive the email? Check your spam folder.
-            </p>
-          </div>
-        </div>
-      </main>
-    );
-  }
+  // Note: The notVerified UI won't be shown anymore since we removed the check
+  // You can optionally delete the notVerified conditional return entirely
 
   return (
     <main className="bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50/30 min-h-screen flex items-center justify-center py-12">

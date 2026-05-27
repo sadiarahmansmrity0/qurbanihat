@@ -9,7 +9,6 @@ import {
   updateProfile,
   updateEmail,
   updatePassword,
-  sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
@@ -50,19 +49,6 @@ export default function AuthProvider({ children }) {
     }
   };
 
-  // Send email verification
-  const sendVerification = async () => {
-    try {
-      setError(null);
-      if (auth.currentUser) {
-        await sendEmailVerification(auth.currentUser);
-      }
-    } catch (error) {
-      setError(error.message);
-      throw error;
-    }
-  };
-
   // Sign in with email and password
   const login = async (email, password) => {
     try {
@@ -96,8 +82,6 @@ export default function AuthProvider({ children }) {
           displayName,
           photoURL,
         });
-        // We don't manually update user state here because onAuthStateChanged will handle it
-        // Or we can manually update it if we want immediate feedback
       }
     } catch (error) {
       setError(error.message);
@@ -110,7 +94,7 @@ export default function AuthProvider({ children }) {
     try {
       setError(null);
       if (auth.currentUser) {
-        await updateUserEmail(auth.currentUser, newEmail);
+        await updateEmail(auth.currentUser, newEmail);
       }
     } catch (error) {
       setError(error.message);
@@ -123,7 +107,7 @@ export default function AuthProvider({ children }) {
     try {
       setError(null);
       if (auth.currentUser) {
-        await updateUserPassword(auth.currentUser, newPassword);
+        await updatePassword(auth.currentUser, newPassword);
       }
     } catch (error) {
       setError(error.message);
@@ -147,7 +131,6 @@ export default function AuthProvider({ children }) {
     error,
     signup,
     signInWithGoogle,
-    sendVerification,
     login,
     logout,
     updateUserProfile,
