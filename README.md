@@ -1,4 +1,3 @@
-```markdown
 # 🐐 QurbaniHat - Halal Livestock Booking Platform
 
 ## 📋 Overview
@@ -53,36 +52,6 @@ QurbaniHat is a modern web application that connects users with verified farms f
 - **Package Manager:** npm
 - **Version Control:** Git
 
-## 📁 Project Structure
-
-```
-qurbanihat/
-├── src/
-│   ├── app/              # Next.js App Router pages
-│   │   ├── login/        # Login page
-│   │   ├── register/     # Registration page
-│   │   ├── profile/      # User profile page
-│   │   ├── all-animals/  # Browse all animals
-│   │   └── animal/[id]/  # Single animal details
-│   ├── components/       # Reusable UI components
-│   │   ├── Navbar.jsx
-│   │   ├── Footer.jsx
-│   │   ├── PrivateRoute.jsx
-│   │   ├── Loading.jsx
-│   │   └── Skeleton.jsx
-│   ├── context/          # React context providers
-│   │   ├── AuthContext.jsx
-│   │   └── Firebase/
-│   ├── hooks/            # Custom React hooks
-│   │   └── useAuth.js
-│   ├── firebase/         # Firebase configuration
-│   └── assets/           # Static assets (images, logos)
-├── public/               # Public static files
-├── .env.local           # Environment variables (local)
-├── tailwind.config.js   # Tailwind CSS configuration
-├── next.config.js       # Next.js configuration
-└── package.json         # Dependencies and scripts
-```
 
 ## 🚀 Getting Started
 
@@ -128,16 +97,6 @@ qurbanihat/
    http://localhost:3000
    ```
 
-### Building for Production
-
-```bash
-# Create production build
-npm run build
-
-# Start production server
-npm run start
-```
-
 ## 📦 Available Scripts
 
 | Command | Description |
@@ -159,71 +118,6 @@ npm run start
 | `NEXT_PUBLIC_FIREBASE_APP_ID` | Firebase app ID |
 | `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID` | Firebase analytics measurement ID |
 
-## 🗄️ Firestore Database Structure
-
-### Users Collection
-```javascript
-users/{userId}
-- displayName: string
-- email: string
-- photoURL: string
-- phone: string
-- address: string
-- createdAt: timestamp
-```
-
-### Animals Collection
-```javascript
-animals/{animalId}
-- name: string
-- type: string (cow, goat, sheep)
-- breed: string
-- age: number (in years/months)
-- price: number
-- weight: number (in kg)
-- image: string (URL)
-- description: string
-- createdAt: timestamp
-```
-
-### Orders Collection
-```javascript
-orders/{orderId}
-- userId: string (reference to users collection)
-- animalId: string (reference to animals collection)
-- quantity: number
-- totalPrice: number
-- status: string (pending, confirmed, completed, cancelled)
-- createdAt: timestamp
-```
-
-## 🚢 Deployment
-
-### Deploy to Vercel
-
-1. **Push your code to GitHub**
-   ```bash
-   git add .
-   git commit -m "Ready for deployment"
-   git push origin main
-   ```
-
-2. **Connect to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Add environment variables in Vercel dashboard
-   - Click "Deploy"
-
-3. **Add environment variables on Vercel**
-   - Navigate to Project Settings → Environment Variables
-   - Add all `NEXT_PUBLIC_` variables from your `.env.local`
-   - Redeploy the project
-
-### Manual Deploy with Vercel CLI
-```bash
-npm install -g vercel
-vercel --prod
-```
 
 ## 📱 Key Features in Detail
 
@@ -261,37 +155,13 @@ The project uses Tailwind CSS with a custom color scheme:
 - Environment variables protect sensitive keys
 - PrivateRoute wrapper protects authenticated routes
 
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Port 3000 already in use**
-```bash
-# Kill process using port 3000 (Windows)
-netstat -ano | findstr :3000
-taskkill /PID [process_id] /F
-
-# Or use a different port
-npm run dev -- --port 3001
-```
-
-**Firebase initialization errors**
-- Ensure environment variables are correctly set
-- Check that Firebase project has Authentication enabled
-- Verify Firestore database is created
-
-**Build failures on Vercel**
-- Add all environment variables to Vercel dashboard
-- Check that `NEXT_PUBLIC_` prefix is used
-- Verify `package.json` has correct build scripts
-
 ## 📄 License
 
 This project is for educational/demonstration purposes.
 
 ## 👨‍💻 Author
 
-**Sadiarahman Smrity**
+**Sadia Rahman Smrity**
 
 ## 🙏 Acknowledgments
 
@@ -312,5 +182,3 @@ For issues or questions, please:
 **Live Demo:** [https://qurbanihat-azure.vercel.app](https://qurbanihat-azure.vercel.app)
 
 **Note:** Email verification is disabled for testing convenience. For production, consider re-enabling email verification and adding password recovery features.
-```
-
